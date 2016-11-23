@@ -22,17 +22,16 @@ public class ConsoleCli {
             cmd = parser.parse(options, args);
         } catch (ParseException e) {
             help();
-            System.exit(0);
         }
         int left = parseOperand("l");
         int right = parseOperand("r");
-        String op = "";
-        if (cmd.hasOption("o")){
-            op = cmd.getOptionValue("o");
+        String operationCommand = "";
+        if (cmd.hasOption("o")) {
+            operationCommand = cmd.getOptionValue("o");
         }
 
         Operation operation = null;
-        switch (op) {
+        switch (operationCommand) {
             case "mult":
                 operation = new Multiplication();
                 break;
@@ -48,7 +47,7 @@ public class ConsoleCli {
         }
         if (operation != null) {
             System.out.println(operation.calculate(left, right));
-        }else {
+        } else {
             help();
         }
     }
